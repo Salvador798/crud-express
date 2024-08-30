@@ -1,4 +1,5 @@
 const exporess = require("express");
+const security = require("./security");
 const response = require("../../red/response");
 const controller = require("./index");
 
@@ -6,8 +7,8 @@ const router = exporess.Router();
 
 router.get("/", all);
 router.get("/:id", one);
-router.post("/", added);
-router.put("/", deleted);
+router.post("/", security(), added);
+router.put("/", security(), deleted);
 
 async function all(req, res, next) {
   try {
